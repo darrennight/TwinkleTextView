@@ -14,7 +14,7 @@ public class MainActivity extends Activity
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-		ttv=(TwinkleTextView)findViewById(R.id.unlock);
-		ttv.startShow(true);
+	/*	ttv=(TwinkleTextView)findViewById(R.id.unlock);
+		ttv.startShow(true);*/
     }
 }

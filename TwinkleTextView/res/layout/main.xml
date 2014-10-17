@@ -5,9 +5,10 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <com.wxp.twinkle.TwinkleTextView
+    <com.wxp.twinkle.TwinkleText
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:id="@+id/unlock"
+		android:text="hello"
 		/>
 </LinearLayout>
