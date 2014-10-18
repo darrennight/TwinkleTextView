@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <com.wxp.twinkle.TwinkleText
+    <com.wxp.twinkle.TwinkleTextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:id="@+id/unlock"
