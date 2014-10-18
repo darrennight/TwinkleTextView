@@ -8,16 +8,16 @@ import android.graphics.Shader.TileMode;
 import android.os.*;
 public class TwinkleTextView extends View
 {
+	private int width;
     private	Paint mPaint;
 	private long mLastTime=System.currentTimeMillis();
 	private float mDX=500;
     private	boolean start=false;
-	
 	private Shader mShader;
 	
 	float startX=200;
 	float startY=200;
-	//int offSet=1;
+	
 	public TwinkleTextView(Context context){
 		super(context);
 		init();
@@ -30,18 +30,24 @@ public class TwinkleTextView extends View
 	
 	public void init(){
 		mPaint=new Paint();
-		mPaint.setColor(Color.WHITE);
+		mPaint.setColor(Color.RED);
 		mPaint.setAntiAlias(true);
-		mShader=new LinearGradient(0,0,200,0,new int[] { 0xff321d29,0xff76415f, Color.WHITE}, new float[] { 0, 0.4f, 0.8f},TileMode.MIRROR);
+		mShader=new LinearGradient(0,0,250,0,new int[] {0xff321d29,0xff321d29,  Color.WHITE}, new float[] {  0, 0.4f, 0.8f},TileMode.MIRROR);
+		/**
+		 * 第五个参数与第六个数组相对应：
+		 * int数组的第一位的数值表示float数组第一位到第二位之间的颜色
+		 * int数组的第二位的数值表示float数组第二位到第三位之间的颜色
+		 * int数组的第三位就是缝隙的颜色
+		 * float数组的范范围是0~1		 */
 	    mPaint.setShader(mShader);
-		
+		mPaint.setTextSize(50);
 	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{
 		super.onSizeChanged(w, h, oldw, oldh);
-		
+		this.width=w;
 	}
 
 	@Override
@@ -51,7 +57,7 @@ public class TwinkleTextView extends View
 		long nowTime=System.currentTimeMillis();
 		float duration=(nowTime-mLastTime)/6.0f;
 		mDX+=duration;
-		Log.e("wxp","mDex="+mDX);
+
 		Matrix matrix=new Matrix();
 		if(start){
 			/*
@@ -65,12 +71,17 @@ public class TwinkleTextView extends View
 		}else{
 			matrix.setTranslate(0,0);
 		}
-		mPaint.setTextSize(50);
+		if(mDX>this.width*100){
+	    	   mDX=500;
+	       }
+
 		mPaint.setTextAlign(Paint.Align.CENTER);
-		/*FontMetrics fm=mPaint.getFontMetrics();
-		FontMetrics是用于测量文字基准线以及实际的上下高度的类*/
+		FontMetrics fm=mPaint.getFontMetrics();
+		/*FontMetrics是用于测量文字基准线以及实际的上下高度的类*/
 		mShader.setLocalMatrix(matrix);
-		canvas.drawText("滑动来解锁",startX,startY,mPaint);
+		canvas.save();
+		canvas.drawText("滑动来解锁",startX,-fm.top/5*4,mPaint);
+		canvas.restore();
 		mLastTime=nowTime;
 	}
 
