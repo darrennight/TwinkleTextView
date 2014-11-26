@@ -5,7 +5,7 @@ TwinkleTextView
 
 效果图如下：
 
-![TwinkleTextView.gif](/media/twinkletextview.gif)
+![TwinkleTextView.gif](/Media/twinkletextview.gif)
 
 - - -
 THE END
